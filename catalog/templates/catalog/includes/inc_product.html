@@ -1,8 +1,12 @@
+{% load my_tags %}
 <div class="col-3 h-100">
     <div class="card mb-4 box-shadow">
         <div class="card-header">
             <h4 class="my-0 font-weight-normal">{{object.title}}</h4>
         </div>
+        <img class="card-img-top"
+            src = "{{ object.picture | mymedia}}"
+            alt = "Card image cap">
         <div class="card-body">
             <h1 class="card-title pricing-card-title">$ {{object.price}}</h1>
             <p class="card-text"> {{ object.description }} </p>
