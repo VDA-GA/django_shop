@@ -4,7 +4,10 @@ from catalog.models import Product
 
 
 def home(request):
-    context = {'object_list': Product.objects.all}
+    context = {'object_list': Product.objects.all(),
+               'title': 'Skystore'
+               }
+
     return render(request, 'catalog/home.html', context)
 
 
