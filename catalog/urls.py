@@ -1,10 +1,11 @@
 from django.urls import path
 from . import views
+from .views import ProductDetailView, ProductListView, ContactsView
 
 app_name = 'Skystore'
 
 urlpatterns = [
-    path('', views.home),
-    path('contacts/', views.contacts),
-    path('<int:pk>/', views.product, name='product_page'),
+    path('', ProductListView.as_view()),
+    path('contacts/', ContactsView.as_view()),
+    path('<int:pk>/', ProductDetailView.as_view(), name='product_page'),
 ]
