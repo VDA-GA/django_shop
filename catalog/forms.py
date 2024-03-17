@@ -2,7 +2,7 @@ from django import forms
 
 import re
 
-from catalog.models import Product
+from catalog.models import Product, Version
 
 FORBIDDEN_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
@@ -27,3 +27,9 @@ class ProductForm(forms.ModelForm):
             raise forms.ValidationError('Были использованы запрещенные слова')
 
         return cleaned_data
+
+
+class VersionForm(forms.ModelForm):
+    class Meta:
+        model = Version
+        fields = '__all__'

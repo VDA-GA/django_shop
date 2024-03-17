@@ -1,7 +1,12 @@
 {% extends 'catalog/base.html' %}
 
 {% block content%}
+<div class="btn-group mb-4" role="group" aria-label="Basic example">
+    <a class="btn btn-outline-primary" href="{% url 'Skystore:product_update' product.pk %}" role="button">Изменить продукт</a>
+    <a class="btn btn-outline-primary" href="{% url 'Skystore:product_list'%}" role="button">Вернуться к списку</a>
+</div>
+
 <div class="row text-center row-cols-1 row-cols-md-4 g-4">
-        {% include 'catalog/includes/inc_product.html' %}
-    </div>
+    {% include 'catalog/includes/inc_product.html' %}
+</div>
 {% endblock %}
