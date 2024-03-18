@@ -1,9 +1,15 @@
 {% extends 'catalog/base.html' %}
 
 {% block content%}
-<div class="btn-group mb-4" role="group" aria-label="Basic example">
-    <a class="btn btn-outline-primary" href="{% url 'Skystore:product_update' product.pk %}" role="button">Изменить продукт</a>
-    <a class="btn btn-outline-primary" href="{% url 'Skystore:product_list'%}" role="button">Вернуться к списку</a>
+<div class="col-3 h-100">
+    <div class="btn-group mb-4" role="group" aria-label="Basic example">
+        <a class="btn btn-outline-primary" href="{% url 'Skystore:product_update' product.pk %}" role="button">Изменить
+            продукт</a>
+        <a class="btn btn-outline-danger" href="{% url 'Skystore:product_delete' product.pk %}" role="button">Удалить
+            продукт</a>
+        <a class="btn btn-outline-secondary" href="{% url 'Skystore:product_list'%}" role="button">Вернуться к
+            списку</a>
+    </div>
 </div>
 
 <div class="row text-center row-cols-1 row-cols-md-4 g-4">
