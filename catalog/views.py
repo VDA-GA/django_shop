@@ -17,7 +17,7 @@ class ProductUpdateView(UpdateView):
     form_class = ProductForm
 
     def get_success_url(self):
-        return reverse('Skystore:product_update', args=self.kwargs.get('pk'))
+        return reverse('Skystore:product_update', args=[self.kwargs.get('pk')])
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -44,7 +44,8 @@ class ProductListView(ListView):
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(**kwargs)
-        context_data['versions'] = Version.objects.filter(is_current=True)
+        for product in context_data.get('object_list'):
+            product.version = product.version_set.filter(is_current=True).first()
         return context_data
 
 

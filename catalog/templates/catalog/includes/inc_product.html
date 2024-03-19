@@ -4,12 +4,7 @@
         <div class="card-header">
             <h4><a href="{% url 'Skystore:product_page' object.pk %}"
                    class="my-0 font-weight-normal">{{object.title}} </a></h4>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{% for version in versions %}
-                {% if version.product == object %}
-                {{version.number}}
-                {% endif %}
-                {% endfor %}
-            </h6>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{object.version.number}}</h6>
             <h6 class="card-subtitle mb-2 text-body-secondary">({{object.category}})</h6>
         </div>
         <div class="ratio" style="--bs-aspect-ratio: 50%;">
