@@ -1,0 +1,67 @@
+[
+  {
+    "model": "blog.blog",
+    "pk": 1,
+    "fields": {
+      "title": "Тест!!!!",
+      "slug": "test",
+      "body": "лтдлващищзьващььвлащлищлавщьавджьиилватильажльиждьавджьиджьваьидльавлдьиждльавджьиджьваджьиджваьджьиджв",
+      "picture": "",
+      "created_at": "2024-03-03T13:16:25.573Z",
+      "is_published": true,
+      "views_count": 22
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 2,
+    "fields": {
+      "title": "test",
+      "slug": "test_2",
+      "body": "khiohoihiojsdicjosdaopcmpoasdmopcmospdamcomsoadmcmsadmclimsoadmocsad",
+      "picture": "",
+      "created_at": "2024-03-03T13:28:34.296Z",
+      "is_published": false,
+      "views_count": 14
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 3,
+    "fields": {
+      "title": "knnjbbb",
+      "slug": "knnjbbb",
+      "body": "lknlkncldlknvcklds klv kld vkl lkd lvk kld vl fdlk ;,d';,clmsdklmvklndsklvkl",
+      "picture": "",
+      "created_at": "2024-03-03T13:55:44.881Z",
+      "is_published": true,
+      "views_count": 2
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 5,
+    "fields": {
+      "title": "kjnbjknjkn",
+      "slug": "kjnbjknjkn",
+      "body": ";l,dc';.ds;,v';,fdl;mv;mldmdsl;kmvineuibngm bl;,fl;c",
+      "picture": "",
+      "created_at": "2024-03-03T14:16:47.143Z",
+      "is_published": true,
+      "views_count": 2
+    }
+  },
+  {
+    "model": "blog.blog",
+    "pk": 6,
+    "fields": {
+      "title": "Какой-то тест",
+      "slug": "kakoj-to-test",
+      "body": "длтдлтлотлотлотлотолтло",
+      "picture": "",
+      "created_at": "2024-03-03T15:27:22.889Z",
+      "is_published": true,
+      "views_count": 0
+    }
+  }
+]

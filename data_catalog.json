@@ -1,0 +1,160 @@
+[
+  {
+    "model": "catalog.category",
+    "pk": 1,
+    "fields": {
+      "category_name": "Рассылки",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 2,
+    "fields": {
+      "category_name": "Телеграм боты",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 3,
+    "fields": {
+      "category_name": "Полезные утилиты",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 4,
+    "fields": {
+      "category_name": "Веб-приложения",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.category",
+    "pk": 5,
+    "fields": {
+      "category_name": "Микросервисы",
+      "description": null
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "title": "Сервис рассылок",
+      "description": "Описание сервиса рассылок",
+      "picture": "catalog/2.jpg",
+      "category": 1,
+      "price": "140.00",
+      "created_at": "2024-02-25T10:45:03.777Z",
+      "updated_at": "2024-03-17T11:24:49.656Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "title": "Архиватор",
+      "description": "Описание программы",
+      "picture": "catalog/archiv.jpg",
+      "category": 3,
+      "price": "50.00",
+      "created_at": "2024-02-25T10:45:03.777Z",
+      "updated_at": "2024-03-19T13:02:37.427Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 3,
+    "fields": {
+      "title": "Веб-рисовалка",
+      "description": "Описание",
+      "picture": "catalog/web.jpg",
+      "category": 4,
+      "price": "50.00",
+      "created_at": "2024-02-25T10:45:03.777Z",
+      "updated_at": "2024-02-27T14:52:10.304Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 4,
+    "fields": {
+      "title": "Антивирус",
+      "description": "Описание достоинств антивируса",
+      "picture": "catalog/antivirus.jpg",
+      "category": 3,
+      "price": "110.00",
+      "created_at": "2024-02-25T10:45:03.777Z",
+      "updated_at": "2024-02-27T14:52:26.156Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 5,
+    "fields": {
+      "title": "Телеграм бот",
+      "description": "Какое-то описание телеграм бота",
+      "picture": "catalog/Telegram.jpg",
+      "category": 2,
+      "price": "75.00",
+      "created_at": "2024-02-25T10:45:03.777Z",
+      "updated_at": "2024-02-27T14:52:30.369Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 12,
+    "fields": {
+      "title": "Полезная утилита",
+      "description": "Описание утилиты",
+      "picture": "",
+      "category": 3,
+      "price": "200.00",
+      "created_at": "2024-03-17T11:28:05.556Z",
+      "updated_at": "2024-03-17T11:32:18.676Z"
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "title": "бета",
+      "number": "1.2",
+      "is_current": false,
+      "product": 1
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "title": "альфа",
+      "number": "2.3",
+      "is_current": true,
+      "product": 1
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "title": "название версии",
+      "number": "1.2.33",
+      "is_current": true,
+      "product": 12
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 4,
+    "fields": {
+      "title": "new version",
+      "number": "1.2",
+      "is_current": true,
+      "product": 2
+    }
+  }
+]
