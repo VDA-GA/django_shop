@@ -1,17 +1,16 @@
 {% extends 'catalog/base.html' %}
 
 {% block content%}
-<form method="post" action="" class="form-floating">
+<form method="post" enctype="multipart/form-data" action="" class="form-floating">
     <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
             <div class="card">
-                <div class="card-header text-center p-3"></div>
+                <h5 class="card-header text-center p-3">Профиль</h5>
                 <div class="card-body">
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Войти</button>
-                     <a class="p-2 btn btn-success" href="{% url 'users:generate_password' %}">Восстановить пароль</a>
+                    <button type="submit" class="btn btn-lg btn-block btn-outline-primary">Сохранить</button>
                 </div>
             </div>
         </div>
