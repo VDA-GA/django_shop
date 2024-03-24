@@ -17,6 +17,7 @@ import os
 load_dotenv()
 
 PSQL_PASSWORD = os.getenv('PSQL_PASSWORD')
+EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -136,3 +137,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'vasilenkoda91@gmail.com'
+EMAIL_HOST_PASSWORD = f'{EMAIL_PASSWORD}'
+EMAIL_USE_TLS = True
