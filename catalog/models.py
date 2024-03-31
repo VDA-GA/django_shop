@@ -17,6 +17,11 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    class Status(models.TextChoices):
+        DRAFT = 'DF', 'Draft'
+        PUBLISHED = 'PB', 'Published'
+        CANCELED = 'CN', 'Canceled'
+
     title = models.CharField(max_length=250, verbose_name='Наименование')
     description = models.TextField(**NULLABLE, verbose_name='Описание')
     picture = models.ImageField(upload_to='catalog/', **NULLABLE, verbose_name='Превью')
@@ -24,6 +29,8 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=12, verbose_name='Цена')
     creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, **NULLABLE,
                                 verbose_name='создатель')
+    status = models.CharField(max_length=2, choices=Status.choices, default=Status.DRAFT,
+                              verbose_name='Статус публикации')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Дата создания')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='Дата последнего изменения')
 
@@ -33,6 +40,13 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'продукт'
         verbose_name_plural = 'продукты'
+        ordering = ['-updated_at']
+        permissions = [
+            (
+                'set_published',
+                'Can publish product'
+            )
+        ]
 
 
 class Version(models.Model):

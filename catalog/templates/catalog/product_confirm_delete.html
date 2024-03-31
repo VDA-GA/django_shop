@@ -7,7 +7,7 @@
         {% csrf_token %}
         <p> Хотите удалить продукт {{object.title}}? </p>>
         <button type="submit" class="btn btn-danger">Да</button>
-        <a class="btn btn-secondary" href="{% url 'blog:list' %}">Нет</a>
+        <a class="btn btn-secondary" href="{% url 'Skystore:product_list' %}">Нет</a>
     </form>
 </div>
 

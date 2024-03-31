@@ -1,9 +1,9 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin, PermissionRequiredMixin
 from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
-from catalog.forms import ProductForm, VersionForm
+from catalog.forms import ProductForm, VersionForm, ModeratorProductForm
 from catalog.models import Product, Version
 
 
@@ -19,9 +19,13 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(LoginRequiredMixin, UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
-    form_class = ProductForm
+    def get_form_class(self):
+        if self.request.user.has_perm('catalog.set_published'):
+            return ModeratorProductForm
+        else:
+            return ProductForm
 
     def get_success_url(self):
         return reverse('Skystore:product_update', args=[self.kwargs.get('pk')])
@@ -44,10 +48,20 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             formset.save()
         return super().form_valid(form)
 
+    def test_func(self):
+        obj = self.get_object()
+        return obj.creator == self.request.user or self.request.user.groups.filter(name='Moderators').exists()
+
 
 class ProductListView(ListView):
     model = Product
     extra_context = {'title': 'Skystore'}
+
+    def get_queryset(self):
+        queryset = Product.objects.all()
+        if self.request.user.groups.filter(name='Moderators').exists():
+            return queryset
+        return queryset.filter(status='PB')
 
     def get_context_data(self, *args, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -60,8 +74,9 @@ class ProductDetailView(DetailView):
     model = Product
 
 
-class ProductDeleteView(LoginRequiredMixin, DeleteView):
+class ProductDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     model = Product
+    permission_required = 'catalog.delete_product'
     success_url = reverse_lazy('Skystore:product_list')
 
 

@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header text-center text-bg-info p-3">
                     {% if object %}
-                    <h5 class="card-title">Редактирование продукта</h5>
+                    <h5 class="card-title">Редактирование продукта {{ object.title }}</h5>
                     {% else %}
                     <h5 class="card-title">Добавление продукта</h5>
                     {% endif %}
@@ -28,6 +28,8 @@
         </div>
 
         {% if object %}
+        {% if perms.catalog.change_version or user == object.creator %}
+
         <div class="col-6">
             <div class="card">
                 <div class="card-header text-center text-bg-info p-3">
@@ -42,7 +44,8 @@
                 </div>
             </div>
         </div>
+        {% endif %}
+        {% endif %}
     </div>
-    {% endif %}
 </form>
 {% endblock %}

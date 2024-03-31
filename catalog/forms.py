@@ -20,7 +20,7 @@ class StyleFormMixin:
 class ProductForm(StyleFormMixin, forms.ModelForm):
     class Meta:
         model = Product
-        exclude = ('creator', )
+        exclude = ('creator', 'status')
 
     def clean_title(self):
         cleaned_data = self.cleaned_data.get('title')
@@ -37,6 +37,11 @@ class ProductForm(StyleFormMixin, forms.ModelForm):
             raise forms.ValidationError('Были использованы запрещенные слова')
 
         return cleaned_data
+
+
+class ModeratorProductForm(ProductForm):
+    class Meta(ProductForm.Meta):
+        exclude = ('title', 'creator', 'price', 'picture')
 
 
 class VersionForm(StyleFormMixin, forms.ModelForm):
