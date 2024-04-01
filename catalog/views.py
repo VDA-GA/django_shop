@@ -21,6 +21,7 @@ class ProductCreateView(LoginRequiredMixin, CreateView):
 
 class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
+
     def get_form_class(self):
         if self.request.user.has_perm('catalog.set_published'):
             return ModeratorProductForm
