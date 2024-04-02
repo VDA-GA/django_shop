@@ -45,6 +45,14 @@ class Product(models.Model):
             (
                 'set_published',
                 'Can publish product'
+            ),
+            (
+                'change_description',
+                'Can change description'
+            ),
+            (
+                'change_category',
+                'Can change category'
             )
         ]
 

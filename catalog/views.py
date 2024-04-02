@@ -54,6 +54,16 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         return obj.creator == self.request.user or self.request.user.groups.filter(name='Moderators').exists()
 
 
+class ModeratorProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Product
+    form_class = ModeratorProductForm
+    permission_required = ('catalog.set_published', 'catalog.change_description', 'catalog.change_category')
+    success_url = reverse_lazy('Skystore:product_list')
+
+    def get_success_url(self):
+        return reverse('Skystore:product_update', args=[self.kwargs.get('pk')])
+
+
 class ProductListView(ListView):
     model = Product
     extra_context = {'title': 'Skystore'}

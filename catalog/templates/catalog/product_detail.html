@@ -3,19 +3,20 @@
 {% block content%}
 <div class="col-3 h-100">
     <div class="btn-group mb-4" role="group" aria-label="Basic example">
-        {% if perms.catalog.change_product or user == object.creator %}
+        {% if user == object.creator %}
         <a class="btn btn-outline-primary" href="{% url 'Skystore:product_update' product.pk %}" role="button">Изменить
             продукт</a>
+        {% elif perms.catalog.set_published and perms.catalog.change_description and perms.catalog.change_category %}
+        <a class="btn btn-outline-primary" href="{% url 'Skystore:moderator_product_update' product.pk %}"
+           role="button">Изменить
+            продукт</a>
+        {% endif %}
         {% if perms.catalog.delete_product %}
         <a class="btn btn-outline-danger" href="{% url 'Skystore:product_delete' product.pk %}" role="button">Удалить
             продукт</a>
         {% endif %}
         <a class="btn btn-outline-secondary" href="{% url 'Skystore:product_list'%}" role="button">Вернуться к
             списку</a>
-        {% else %}
-        <a class="btn btn-outline-secondary" href="{% url 'Skystore:product_list'%}" role="button">Вернуться к
-            списку</a>
-        {% endif %}
     </div>
 </div>
 
