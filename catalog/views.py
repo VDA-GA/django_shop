@@ -46,7 +46,7 @@ class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
     def test_func(self):
         obj = self.get_object()
-        return obj.creator == self.request.user or self.request.user.groups.filter(name='Moderators').exists()
+        return obj.creator == self.request.user
 
 
 class ModeratorProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
