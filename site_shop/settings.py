@@ -14,19 +14,16 @@ from pathlib import Path
 from dotenv import load_dotenv
 import os
 
-load_dotenv()
-
-PSQL_PASSWORD = os.getenv('PSQL_PASSWORD')
-EMAIL_PASSWORD = os.getenv('EMAIL_PASSWORD')
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+load_dotenv(BASE_DIR / '.env')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f-v!+@he+%_p9!*bpra=w9wz2ro*z1vzf(mg#p_3v7v$v4z@lm'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,8 +81,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'django_shop',
-        'USER': 'postgres',
-        'PASSWORD': f'{PSQL_PASSWORD}',
+        'USER': os.getenv('PSQL_USER'),
+        'PASSWORD': os.getenv('PSQL_PASSWORD'),
 
     }
 }
@@ -140,15 +137,15 @@ LOGIN_REDIRECT_URL = '/'
 
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-EMAIL_HOST_USER = 'vasilenkoda91@gmail.com'
-EMAIL_HOST_PASSWORD = f'{EMAIL_PASSWORD}'
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
 EMAIL_USE_TLS = True
 
-CACHE_ENABLED = True
+CACHE_ENABLED = os.getenv('CACHE_ENABLED') == '1'
 
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
+        "LOCATION": os.getenv('CACHES_LOCATION'),
     }
 }
