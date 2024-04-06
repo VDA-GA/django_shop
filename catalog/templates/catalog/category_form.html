@@ -1,0 +1,32 @@
+{% extends 'catalog/base.html' %}
+
+{% block content%}
+<form method="post" enctype="multipart/form-data" action="" class="form-floating">
+    <div class="row">
+        <div class="col-6">
+            <div class="card">
+                <div class="card-header text-center text-bg-info p-3">
+                    {% if object %}
+                    <h5 class="card-title">Редактирование категории {{ object.title }}</h5>
+                    {% else %}
+                    <h5 class="card-title">Добавление категории</h5>
+                    {% endif %}
+                </div>
+                <div class="card-body">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-lg btn-block btn-outline-primary">
+                        {% if object %}
+                        Сохранить
+                        {% else %}
+                        Создать
+                        {% endif %}
+                    </button>
+                    <a class="btn btn-outline-secondary" href="{% url 'Skystore:category_list'%}" role="button">Вернуться к
+            списку категорий</a>
+
+                </div>
+            </div>
+        </div>
+</form>
+{% endblock %}

@@ -3,8 +3,42 @@ from django.forms import inlineformset_factory
 from django.urls import reverse_lazy, reverse
 from django.views.generic import DetailView, ListView, TemplateView, CreateView, UpdateView, DeleteView
 
-from catalog.forms import ProductForm, VersionForm, ModeratorProductForm
-from catalog.models import Product, Version
+from catalog.forms import ProductForm, VersionForm, ModeratorProductForm, CategoryForm
+from catalog.models import Product, Version, Category
+
+
+class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
+    model = Category
+    form_class = CategoryForm
+    permission_required = 'catalog.add_category'
+    success_url = reverse_lazy('Skystore:category_list')
+
+
+class CategoryListView(ListView):
+    model = Category
+
+    def get_queryset(self):
+        queryset = Category.objects.all()
+        return queryset
+
+
+class CategoryDetailView(DetailView):
+    model = Category
+
+
+class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView):
+    model = Category
+    form_class = CategoryForm
+
+    permission_required = 'catalog.change_category'
+    def get_success_url(self):
+        return reverse('Skystore:category_update', args=[self.kwargs.get('pk')])
+
+
+class CategoryDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
+    model = Category
+    permission_required = 'catalog.delete_category'
+    success_url = reverse_lazy('Skystore:category_list')
 
 
 class ProductCreateView(LoginRequiredMixin, CreateView):

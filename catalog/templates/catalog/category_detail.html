@@ -1,0 +1,37 @@
+{% extends 'catalog/base.html' %}
+
+{% block content%}
+<div class="col-3 h-100">
+    <div class="btn-group mb-4" role="group" aria-label="Basic example">
+        {% if perms.catalog.change_category %}
+        <a class="btn btn-outline-primary" href="{% url 'Skystore:category_update' category.pk %}"
+           role="button">Изменить
+            категорию</a>
+        {% endif %}
+        {% if perms.catalog.delete_category %}
+        <a class="btn btn-outline-danger" href="{% url 'Skystore:category_delete' category.pk %}" role="button">Удалить
+            категорию</a>
+        {% endif %}
+        <a class="btn btn-outline-secondary" href="{% url 'Skystore:category_list'%}" role="button">Вернуться к
+            списку категорий</a>
+    </div>
+</div>
+
+<div class="row text-center row-cols-1 row-cols-md-4 g-4">
+    <div class="col-3 h-100">
+        <div class="card mb-4 box-shadow">
+            <div class="card-header">
+                <h4><a href="{% url 'Skystore:category_page' object.pk %}"
+                       class="my-0 font-weight-normal">{{object.category_name}} </a></h4>
+            </div>
+            <div class="card-body">
+                {% if object.description %}
+                <p class="card-text"> {{ object.description|truncatechars:100 }} </p>
+                {% else %}
+                <p class="card-text"> У категории отсутствует описание </p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -138,9 +138,17 @@ AUTH_USER_MODEL = 'users.User'
 LOGOUT_REDIRECT_URL = '/'
 LOGIN_REDIRECT_URL = '/'
 
-
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'vasilenkoda91@gmail.com'
 EMAIL_HOST_PASSWORD = f'{EMAIL_PASSWORD}'
 EMAIL_USE_TLS = True
+
+CACHE_ENABLED = True
+
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379",
+    }
+}

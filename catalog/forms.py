@@ -2,7 +2,7 @@ from django import forms
 
 import re
 
-from catalog.models import Product, Version
+from catalog.models import Product, Version, Category
 
 FORBIDDEN_WORDS = ['казино', 'криптовалюта', 'крипта', 'биржа', 'дешево', 'бесплатно', 'обман', 'полиция', 'радар']
 
@@ -15,6 +15,12 @@ class StyleFormMixin:
                 field.widget.attrs['class'] = 'form-check-input'
             else:
                 field.widget.attrs['class'] = 'form-control'
+
+
+class CategoryForm(StyleFormMixin, forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = '__all__'
 
 
 class ProductForm(StyleFormMixin, forms.ModelForm):

@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html' %}
+
+{% block content%}
+
+<div class="col-12 mb-5" >
+    {% if perms.catalog.add_category %}
+    <a class="btn btn-outline-primary" href="{% url 'Skystore:create_category' %}" role="button">Создать категорию</a>
+    {% endif %}
+</div>
+
+<ul class="list-group">
+  {% for object in object_list %}
+  <li><a href="{% url 'Skystore:category_page' object.pk  %}">{{object.category_name}}</a></li>
+  {% endfor %}
+</ul>
+{% endblock %}
