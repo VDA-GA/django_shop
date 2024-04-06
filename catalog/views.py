@@ -5,6 +5,7 @@ from django.views.generic import DetailView, ListView, TemplateView, CreateView,
 
 from catalog.forms import ProductForm, VersionForm, ModeratorProductForm, CategoryForm
 from catalog.models import Product, Version, Category
+from catalog.services import get_categories_cache, get_products_cache
 
 
 class CategoryCreateView(LoginRequiredMixin, PermissionRequiredMixin, CreateView):
@@ -18,7 +19,7 @@ class CategoryListView(ListView):
     model = Category
 
     def get_queryset(self):
-        queryset = Category.objects.all()
+        queryset = get_categories_cache()
         return queryset
 
 
@@ -31,6 +32,7 @@ class CategoryUpdateView(LoginRequiredMixin, PermissionRequiredMixin, UpdateView
     form_class = CategoryForm
 
     permission_required = 'catalog.change_category'
+
     def get_success_url(self):
         return reverse('Skystore:category_update', args=[self.kwargs.get('pk')])
 
@@ -87,10 +89,9 @@ class ModeratorProductUpdateView(LoginRequiredMixin, PermissionRequiredMixin, Up
     model = Product
     form_class = ModeratorProductForm
     permission_required = ('catalog.set_published', 'catalog.change_description', 'catalog.change_category')
-    success_url = reverse_lazy('Skystore:product_list')
 
     def get_success_url(self):
-        return reverse('Skystore:product_update', args=[self.kwargs.get('pk')])
+        return reverse('Skystore:moderator_product_update', args=[self.kwargs.get('pk')])
 
 
 class ProductListView(ListView):
@@ -98,7 +99,7 @@ class ProductListView(ListView):
     extra_context = {'title': 'Skystore'}
 
     def get_queryset(self):
-        queryset = Product.objects.all()
+        queryset = get_products_cache()
         if self.request.user.groups.filter(name='Moderators').exists():
             return queryset
         return queryset.filter(status='PB')
